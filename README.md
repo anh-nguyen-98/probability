@@ -13,7 +13,7 @@ UG190005 Nguyen Hoang Nam Anh
 
 # Contact:
 
-huyen.nguyen.190033@student,fulbright.edu.vn
+huyen.nguyen.190033@student.fulbright.edu.vn
 
 anh.nguyen.190005@student.fulbright.edu.vn
 
