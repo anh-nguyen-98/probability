@@ -1,8 +1,7 @@
 const submitOnClick = () => {
-    const input = document.getElementById("inputCC").value;
+    const input = document.getElementById("coupon_input").value;
     console.log(input);
-    console.log(typeof(input));
-    document.getElementById("retCC").innerHTML = harmonic(input)*input;
+    document.getElementById("coupon_ret").innerHTML = harmonic(input)*input;
 
 }
 
