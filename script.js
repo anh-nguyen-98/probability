@@ -9,36 +9,42 @@ const cpType1OnClick = () => {
    
 }
 const cpSubmitOnClick = () => { 
-    if (!validateInput()) return;
-    var n = document.getElementById("cp_count").value;
-    if (document.getElementById("type_1").checked) {
-        document.getElementById("cp_expectedV").innerHTML = e_type_1(n);
-        document.getElementById("cp_var").innerHTML = var_type_1(n);
-        return;
-    }
-
-
-
-}
-
-function validateInput () {
     var n = document.getElementById("cp_count").value;
     var type_1 = document.getElementById("type_1").checked;
     var type_2 = document.getElementById("type_2").checked;
-    if (n == "") {
-        document.getElementById("cp_exception").innerHTML += 
-        "number of coupon types can't be empty <br />";
+    var p_lst = document.getElementById("cp_prob").value
+                                .split("\n").filter(p => !isNaN(p))
+                                .map(p => parseInt(p));
+    console.log(p_lst);
+    if (!validateInput(n, type_1, type_2, p_lst)) return;
+    if (type_1) cal_type_1(n);
         
-    }
-
-    if (!(type_1 | type_2)) {
-        document.getElementById("cp_exception").innerHTML += 
-        "problem type unchecked <br />";
-    }
-    return  n != "" && (type_1 | type_2);
+    else cal_type_2 (n, p_lst);
+  
 }
 
-const e_type_1 = (n) => {
+function validateInput (n, type_1, type_2, p_lst) {
+    var err = document.getElementById("cp_exception").innerHTML;
+    if (n == "") err += "Error: number of coupon types can't be empty <br />";
+
+    if (!(type_1 | type_2)) err += "Error: problem type unchecked <br />";
+    
+    if (type_2 && p_lst.length != n) err += 
+        "Error: missing/ incorrect-format coupon probability input <br />";
+    
+    if (type_2 && p_lst.length == n && p_lst.reduce((a, b) => a + b, 0) != 1)
+        err += "Error: sum of coupon probability is not 1 <br />";
+
+    return  n != "" && (type_1 | type_2 && p_lst.length == n);
+}
+
+function cal_type_1 (n) {
+    document.getElementById("cp_expectedV").innerHTML = epv_type_1(n);
+    document.getElementById("cp_var").innerHTML = var_type_1(n);
+}
+
+
+const epv_type_1 = (n) => {
     return n * harmonic (n);
 }
 
@@ -62,6 +68,30 @@ const var_type_1 = (n) => {
 
    
 
+}
+
+function cal_type_2 (n, p_lst) {
+    combine_sum_p(p_lst);
+}
+
+function combine_sum_p (p_lst) {
+    let table =  new Map(); // key: length of combo, value: sum 
+    for (var i = 1; i <= p_lst.length; i++){
+        table.set(i, []);
+    }
+    combine(p_lst, table, -1, 0, 0);
+    console.log(table);
+
+
+}
+function combine (p_lst, table, curr_idx, sum, n) {
+    if (curr_idx == p_lst.length -1) return;
+    for (var nxt = curr_idx +1; nxt < p_lst.length; nxt++) {
+        sum += p_lst[nxt];
+        table.get(n+1).push(sum);
+        combine (p_lst, table, nxt, sum, n+1);
+        sum -= p_lst[nxt];
+    }
 }
 
 
