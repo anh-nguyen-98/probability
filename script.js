@@ -50,8 +50,29 @@ function cal_type_1 (n) {
     }
     var exp_v = sum1 * n;
     var variance = Math.pow(n, 2) * sum2 - n * sum1;
+    
+    // dist
+    var lim = 0.001;
+    var dist = [[], []];
+    var p = 1/n;
+    var t = 0;
+    var f_t = 0;
+    // optimize with recursion for a ^ x
+    while ((1 - f_t) > lim) {
+        dist[0].push(t);
+        dist[1].push(f_t);
+        t += 1;
+        f_t = Math.pow(1 - Math.exp(-p*t), n);
+        
+    }
+    console.log(dist);
+ 
+
     document.getElementById("cp_expectedV").innerHTML = exp_v;
     document.getElementById("cp_var").innerHTML = variance;
+    var ctx = document.getElementById("cp_dist").getContext('2d');
+    build_chart(ctx, dist);
+      
 }
 
 
@@ -59,7 +80,7 @@ function cal_type_1 (n) {
 function cal_type_2 (p_lst) {
     // get sum of p_combinations table
     var sum_p_table = combine_sum_p(p_lst);
-    console.log(sum_p_table);
+    // console.log(sum_p_table);
 
     // expected value, variance
     var exp_v = 0;
@@ -71,18 +92,33 @@ function cal_type_2 (p_lst) {
             exp_v += Math.pow (-1, opr_count-1) * (1/p_sum);
                     
             variance += Math.pow (-1, opr_count-1) * (1/ Math.pow(p_sum, 2));
-            console.log(exp_v);
-            console.log("var");
-            console.log(variance);
             return exp_v, variance;
         });
       
     }
     variance = variance - Math.pow(exp_v, 2) - exp_v; 
 
+    // dist
+    var lim = 0.001;
+    var dist = [[], []];
+    var t = 0;
+    var f_t = 0;
+    while ((1 - f_t) > lim) {
+        dist[0].push(t);
+        dist[1].push(f_t);
+        t += 1;
+        f_t = 1;
+        for (var i = 0; i < p_lst.length; i++) {
+            var p = p_lst[i];
+            f_t *= 1 - Math.exp(-p*t);
+        }
+    }
+
     // show result
     document.getElementById("cp_expectedV").innerHTML = exp_v;
     document.getElementById("cp_var").innerHTML = variance;
+    var ctx = document.getElementById("cp_dist").getContext('2d');
+    build_chart(ctx, dist);
     
 }
 
@@ -106,6 +142,37 @@ function combine (p_lst, table, curr_idx, sum, n) {
         combine (p_lst, table, nxt, sum, n+1);
         sum -= p_lst[nxt];
     }
+
 }
+
+function build_chart(ctx, dist) {
+    try {
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: dist[0],
+                datasets: [{
+                    label: 'density distribution', // Name the series
+                    data: dist[1], // Specify the data values array
+                    fill: true,
+                    borderColor: '#2196f3', // Add custom color border (Line)
+                    backgroundColor: '#2196f3', // Add custom color background (Points and Fill)
+                    borderWidth: 1 // Specify bar border width
+                }]
+            },
+            options: {
+              responsive: true, // Instruct chart js to respond nicely.
+              maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 
+            }
+        });
+    }
+    catch (err) {
+        throw ("Error");
+    }
+   
+}
+
+
+
 
 
