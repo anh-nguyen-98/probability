@@ -96,7 +96,7 @@ function cal_type_2 (p_lst) {
         });
       
     }
-    variance = variance - Math.pow(exp_v, 2) - exp_v; 
+    variance = 2*variance - Math.pow(exp_v, 2) - exp_v; 
 
     // dist
     var lim = 0.001;
