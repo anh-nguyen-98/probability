@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Probability is fun</title>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js'></script>
+  
+</head>
+
+<body>
+    <!-- <header>
+        <h1>Probability tools Huyen Nguyen x Nam Anh</h1>
+    </header> -->
+
+    <!--COUPON COLLECTOR PROBLEM-->
+
+    <h1>COUPON COLLECTOR PROBLEM</h1>
+    <div>
+        <h3>DESCRIPTION</h3>
+        <p>
+            There are n coupons in a collection. A collector has the ability to purchase a coupon, but
+            can’t choose the coupon he purchases. Instead, the coupon is revealed to be coupon i with
+            probability pi = 1/n. Let N be the number of coupons he’ll need to collect before he has at
+            least one coupon of each type. Let’s call this random variable N. Now, this tool helps you solve
+            the following problems:
+            <ul>
+                <li>
+                    P1 The expected value of N when the coupons have equal probabilities of being collected.
+                </li>
+                <li>
+                    P2 The expected value of N when the coupons have unequal probabilities of being collected.
+                </li>
+                <li>
+                    P3 The variance of N when the coupons have equal probabilities of being collected.
+                </li>
+                <li>
+                    P4 The variance of N when the coupons have unequal probabilities of being collected.
+                </li>
+                <li>
+                    
+                    P5 The density function of N (meaning the entire distribution) when the coupons have
+                    equal probabilities.
+                </li>
+                <li>
+                    P6 The density function of N (meaning the entire distribution) when the coupons have
+                    unequal probabilities.
+                </li>
+            </ul>
+                
+            
+        </p>
+    </div>
+    
+    <div>
+        <h3>
+            INPUT SECTION
+        </h3>
+        <form>
+            <p>Number of coupon types:</p>
+            <input type="number" id="cp_count" min="1"><br>
+            <br>
+            <p>Problem type: </p>
+            <input type="radio" id="type_1" name="coupon probability" value="equal" onclick="cpType1OnClick()">
+            <label>Type 1: Probability of each coupon is equal</label> <br>
+            <input type="radio" id="type_2" name="coupon probability" value="unequal">
+            <label>Type 2: Probability of each coupons is unequal</label> 
+            <br>
+            <p>Probability of each coupon: 
+                <br>
+                Format: enter probability of each coupon per line. value must be larger than 0. 
+                <br>
+                (Skip for problem type 1)
+                
+            </p>
+
+            <textarea id="cp_prob" cols="40" rows="20"></textarea>
+            <!-- <input type="text" id="cp_prob"> -->
+            <br>
+            <br>
+            <button type="button" onclick="cpSubmitOnClick()">Submit</button>
+    
+        </form>
+        <label id="cp_exception"></label>
+    
+        
+    </div>
+    <div id="cp_ret">
+        <h3>OUTPUT SECTION</h3>
+        <form>
+            <p>E[N]</p>
+            <label id = "cp_expectedV"></label>
+            <p>Var[N]</p>
+            <label id = "cp_var"></label>
+            <p>Distribution density</p>
+            <canvas id="cp_dist" width="400" height="400"></canvas>
+            
+            
+        </form>
+    
+    </div>    
+
+    <script src="script.js"></script>
+
+    
+</body>
+</html>
