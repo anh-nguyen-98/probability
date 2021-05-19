@@ -1,52 +1,212 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Probability is fun</title>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js'></script>
-  
-</head>
-
+<html>
+<title>Probability Calculator</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js'></script>
+<style>
+body, html {height: 100%}
+body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
+.menu {display: none}
+.bgimg {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("/w3images/pizza.jpg");
+  min-height: 90%;
+}
+</style>
 <body>
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top w3-hide-small">
+    <div class="w3-bar w3-xlarge w3-black w3-opacity w3-hover-opacity-off" id="myNavbar">
+        <a href="#" class="w3-bar-item w3-button">HOME</a>
+        <a href="#calculator" class="w3-bar-item w3-button">CALCULATOR</a>
+        <a href="#about" class="w3-bar-item w3-button">ABOUT</a>
+    </div>
+</div>
+
+<!-- Header with image -->
+<header class="bgimg w3-display-container w3-grayscale-min" id="home">
+    <div class="w3-display-bottomleft w3-padding">
+        <span class="w3-tag w3-xlarge">Probability and Statistics by Prof. Linh Tran</span>
+    </div>
+    <div class="w3-display-middle w3-center">
+        <span class="w3-text-white w3-hide-small" style="font-size:100px">thin<br>MATH IS FUN</span>
+        <span class="w3-text-white w3-hide-large w3-hide-medium" style="font-size:60px"><b>thin<br>MATH IS FUN</b></span>
+        <p><a href="#menu" class="w3-button w3-xxlarge w3-black">Let me enjoy Math</a></p>
+    </div>
+</header>
+
+<!-- Menu Container -->
+<div class="w3-container w3-black w3-padding-64 w3-xxlarge" id="calculator">
+    <div class="w3-content">
+
+        <h1 class="w3-center w3-jumbo" style="margin-bottom:64px">Calculator</h1>
+        <div class="w3-row w3-center w3-border w3-border-dark-grey">
+            <a href="javascript:void(0)" onclick="openMenu(event, 'Coupon collector');" id="myLink">
+                <div class="w3-col s4 tablink w3-padding-large w3-hover-red">Coupon Collector</div>
+            </a>
+            <a href="javascript:void(0)" onclick="openMenu(event, 'Queueing theory');">
+                <div class="w3-col s4 tablink w3-padding-large w3-hover-red">Queueing theory</div>
+            </a>
+            <a href="javascript:void(0)" onclick="openMenu(event, 'What's next?');">
+                <div class="w3-col s4 tablink w3-padding-large w3-hover-red">What's next?</div>
+            </a>
+        </div>
+
+            <div id="Coupon collector" class="w3-container menu w3-padding-32 w3-white">
+                <h1><b>Coupon collector problem</b> </h1>
+                <p class="w3-text-grey">
+                    Description: There are n coupons in a collection. A collector has the ability to purchase a coupon, but
+                    can’t choose the coupon he purchases. Instead, the coupon is revealed to be coupon i with
+                    probability pi = 1/n. Let N be the number of coupons he’ll need to collect before he has at
+                    least one coupon of each type. Let’s call this random variable N. Now, this tool helps you solve
+                    the following problems:
+                <ul>
+                    <li>
+                        P1 The expected value of N when the coupons have equal probabilities of being collected.
+                    </li>
+                    <li>
+                        P2 The expected value of N when the coupons have unequal probabilities of being collected.
+                    </li>
+                    <li>
+                        P3 The variance of N when the coupons have equal probabilities of being collected.
+                    </li>
+                    <li>
+                        P4 The variance of N when the coupons have unequal probabilities of being collected.
+                    </li>
+                    <li>
+
+                        P5 The density function of N (meaning the entire distribution) when the coupons have
+                        equal probabilities.
+                    </li>
+                    <li>
+                        P6 The density function of N (meaning the entire distribution) when the coupons have
+                        unequal probabilities.
+                    </li>
+                </ul>
+                </p>
+                <div>
+                    <h1><b>INPUT SECTION</b>
+                    </h1>
+                    <form>
+                        <p>Number of types of coupons (n):</p>
+                        <input type="number" id="cp_count" min="1"><br>
+                        <br>
+                        <p>Problem type: </p>
+                        <input type="radio" id="type_1" name="coupon probability" value="equal" onclick="cpType1OnClick()">
+                        <label>Type 1: Probability of each coupon is equal</label> <br>
+                        <input type="radio" id="type_2" name="coupon probability" value="unequal">
+                        <label>Type 2: Probability of each coupons is unequal</label>
+                        <br>
+                        <p>Probability of each coupon:
+                            <br>
+                            Format: enter probability of each coupon per line. value must be larger than 0.
+                            <br>
+                            (Skip for problem type 1)
+
+                        </p>
+
+                        <textarea id="cp_prob" cols="40" rows="20"></textarea>
+                        <!-- <input type="text" id="cp_prob"> -->
+                        <br>
+                        <br>
+                        <button type="button" onclick="cpSubmitOnClick()">Submit</button>
+
+                    </form>
+                    <label id="cp_exception"></label>
+
+
+                </div>
+                <div id="cp_ret">
+                    <h3>OUTPUT SECTION</h3>
+                    <form>
+                        <p>E[N]</p>
+                        <label id = "cp_expectedV"></label>
+                        <p>Var[N]</p>
+                        <label id = "cp_var"></label>
+                        <p>Distribution density</p>
+                        <canvas id="cp_dist" width="200" height="200"></canvas>
+                    </form>
+            </div>
+
+            <div id="Pasta" class="w3-container menu w3-padding-32 w3-white">
+                <h1><b>Lasagna</b> <span class="w3-tag w3-grey w3-round">Popular</span> <span class="w3-right w3-tag w3-dark-grey w3-round">$13.50</span></h1>
+                <p class="w3-text-grey">Special sauce, mozzarella, parmesan, ground beef</p>
+                <hr>
+
+                <h1><b>Ravioli</b> <span class="w3-right w3-tag w3-dark-grey w3-round">$14.50</span></h1>
+                <p class="w3-text-grey">Ravioli filled with cheese</p>
+                <hr>
+
+                <h1><b>Spaghetti Classica</b> <span class="w3-right w3-tag w3-dark-grey w3-round">$11.00</span></h1>
+                <p class="w3-text-grey">Fresh tomatoes, onions, ground beef</p>
+                <hr>
+
+                <h1><b>Seafood pasta</b> <span class="w3-right w3-tag w3-dark-grey w3-round">$25.50</span></h1>
+                <p class="w3-text-grey">Salmon, shrimp, lobster, garlic</p>
+            </div>
+
+
+            <div id="Starter" class="w3-container menu w3-padding-32 w3-white">
+                <h1><b>Today's Soup</b> <span class="w3-tag w3-grey w3-round">Seasonal</span><span class="w3-right w3-tag w3-dark-grey w3-round">$5.50</span></h1>
+                <p class="w3-text-grey">Ask the waiter</p>
+                <hr>
+
+                <h1><b>Bruschetta</b> <span class="w3-right w3-tag w3-dark-grey w3-round">$8.50</span></h1>
+                <p class="w3-text-grey">Bread with pesto, tomatoes, onion, garlic</p>
+                <hr>
+
+                <h1><b>Garlic bread</b> <span class="w3-right w3-tag w3-dark-grey w3-round">$9.50</span></h1>
+                <p class="w3-text-grey">Grilled ciabatta, garlic butter, onions</p>
+                <hr>
+
+                <h1><b>Tomozzarella</b> <span class="w3-right w3-tag w3-dark-grey w3-round">$10.50</span></h1>
+                <p class="w3-text-grey">Tomatoes and mozzarella</p>
+            </div><br>
+
+        </div>
+    </div>
     <!-- <header>
         <h1>Probability tools Huyen Nguyen x Nam Anh</h1>
     </header> -->
-    <h2>Coupon collector problem</h2>
-    <p>
-        Description: There are n coupons in a collection. A collector has the ability to purchase a coupon, but
-        can’t choose the coupon he purchases. Instead, the coupon is revealed to be coupon i with
-        probability pi = 1/n. Let N be the number of coupons he’ll need to collect before he has at
-        least one coupon of each type. Let’s call this random variable N. Now, this tool helps you solve
-        the following problems:
-        <ul>
-            <li>
-                P1 The expected value of N when the coupons have equal probabilities of being collected.
-            </li>
-            <li>
-                P2 The expected value of N when the coupons have unequal probabilities of being collected.
-            </li>
-            <li>
-                P3 The variance of N when the coupons have equal probabilities of being collected.
-            </li>
-            <li>
-                P4 The variance of N when the coupons have unequal probabilities of being collected.
-            </li>
-            <li>
-                
-                P5 The density function of N (meaning the entire distribution) when the coupons have
-                equal probabilities.
-            </li>
-            <li>
-                P6 The density function of N (meaning the entire distribution) when the coupons have
-                unequal probabilities.
-            </li>
-        </ul>
-          
-        
-    </p>
+    <div class="w3-container w3-green">
+        <h2>Coupon collector problem</h2>
+        <p>
+            Description: There are n coupons in a collection. A collector has the ability to purchase a coupon, but
+            can’t choose the coupon he purchases. Instead, the coupon is revealed to be coupon i with
+            probability pi = 1/n. Let N be the number of coupons he’ll need to collect before he has at
+            least one coupon of each type. Let’s call this random variable N. Now, this tool helps you solve
+            the following problems:
+            <ul>
+                <li>
+                    P1 The expected value of N when the coupons have equal probabilities of being collected.
+                </li>
+                <li>
+                    P2 The expected value of N when the coupons have unequal probabilities of being collected.
+                </li>
+                <li>
+                    P3 The variance of N when the coupons have equal probabilities of being collected.
+                </li>
+                <li>
+                    P4 The variance of N when the coupons have unequal probabilities of being collected.
+                </li>
+                <li>
+
+                    P5 The density function of N (meaning the entire distribution) when the coupons have
+                    equal probabilities.
+                </li>
+                <li>
+                    P6 The density function of N (meaning the entire distribution) when the coupons have
+                    unequal probabilities.
+                </li>
+            </ul>
+
+
+        </p>
     <div>
         <h3>
             INPUT SECTION
@@ -95,7 +255,23 @@
     
     </div>
     <script src="script.js"></script>
-
+        <script>
+        // Tabbed Menu
+        function openMenu(evt, menuName) {
+          var i, x, tablinks;
+          x = document.getElementsByClassName("menu");
+          for (i = 0; i < x.length; i++) {
+             x[i].style.display = "none";
+          }
+          tablinks = document.getElementsByClassName("tablink");
+          for (i = 0; i < x.length; i++) {
+             tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+          }
+          document.getElementById(menuName).style.display = "block";
+          evt.currentTarget.firstElementChild.className += " w3-red";
+        }
+        document.getElementById("myLink").click();
+        </script>
     
 </body>
 </html>
