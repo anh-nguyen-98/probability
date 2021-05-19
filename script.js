@@ -190,10 +190,21 @@ document.getElementById("myLink").click();
 }
 
 // M/M/1
+const qtType1InputShow = () => {
+    document.getElementById("qt_type_1_input").style.display = "block";
+    document.getElementById("qt_type_2_input").style.display = "none";
+    // document.getElementById("qt_input").innerHTML = document.getElementById("qt_type_1_input").innerHTML;
+}
+
+const qtType2InputShow = () => {
+    document.getElementById("qt_type_1_input").style.display = "none";
+    document.getElementById("qt_type_2_input").style.display = "block";
+    // document.getElementById("qt_input").innerHTML = document.getElementById("qt_type_2_input").innerHTML;
+}
 
 const qtSubmitOnClick = () => {
-    var mean_arv_time = document.getElementById("mean_arv_time").value;
-    var mean_svc_time = document.getElementById("mean_svc_time").value;
+    var mean_arv_time = parseFloat(document.getElementById("mean_arv_time").value);
+    var mean_svc_time = parseFloat(document.getElementById("mean_svc_time").value);
     var type_1 = document.getElementById("qt_type_1").checked;
     var type_2 = document.getElementById("qt_type_2").checked;
 
@@ -240,9 +251,12 @@ function qtValidateInput(mean_arv_time, mean_svc_time){
     var err = "";
     if (mean_arv_time == 0) err += "customer inter-arrival time must be positive \n";
     if (mean_svc_time == 0) err += "service time must be positive \n";
+    console.log (mean_arv_time);
+    console.log(mean_svc_time);
+    console.log(mean_arv_time < mean_svc_time);
     if (mean_arv_time < mean_svc_time) 
-        err += "service time must be less than customer inter-arrival time, " +
-        "or your queue of customers would be infinite";
+        err += "service time must be less than customer inter-arrival time, or your queue of customers would be infinite";
+    console.log(err);
     if (err != "") alert(err);
     return err == "";
 
