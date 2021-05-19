@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<title>Probability Calculator</title>
+<title>FunMath</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -8,7 +8,7 @@
 <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js'></script>
 <style>
 body, html {height: 100%}
-body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
+body,h1,h2,h3,h4,h5,h6 {font-family: "Times New Roman", sans-serif}
 .menu {display: none}
 .bgimg {
   background-repeat: no-repeat;
@@ -36,7 +36,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
     <div class="w3-display-middle w3-center">
         <span class="w3-text-white w3-hide-small" style="font-size:100px">thin<br>MATH IS FUN</span>
         <span class="w3-text-white w3-hide-large w3-hide-medium" style="font-size:60px"><b>thin<br>MATH IS FUN</b></span>
-        <p><a href="#menu" class="w3-button w3-xxlarge w3-black">Let me enjoy Math</a></p>
+        <p><a href="#calculator" class="w3-button w3-xxlarge w3-black">Let me enjoy Math</a></p>
     </div>
 </header>
 
@@ -52,15 +52,16 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
             <a href="javascript:void(0)" onclick="openMenu(event, 'Queueing theory');">
                 <div class="w3-col s4 tablink w3-padding-large w3-hover-red">Queueing theory</div>
             </a>
-            <a href="javascript:void(0)" onclick="openMenu(event, 'What's next?');">
+            <a href="javascript:void(0)" onclick="openMenu(event, 'Next');">
                 <div class="w3-col s4 tablink w3-padding-large w3-hover-red">What's next?</div>
             </a>
         </div>
 
             <div id="Coupon collector" class="w3-container menu w3-padding-32 w3-white">
-                <h1><b>Coupon collector problem</b> </h1>
+                <h1><b>COUPON COLLECTOR PROBLEM</b> </h1>
+                <h3>DESCRIPTION</h3>
                 <p class="w3-text-grey">
-                    Description: There are n coupons in a collection. A collector has the ability to purchase a coupon, but
+                    There are n coupons in a collection. A collector has the ability to purchase a coupon, but
                     can’t choose the coupon he purchases. Instead, the coupon is revealed to be coupon i with
                     probability pi = 1/n. Let N be the number of coupons he’ll need to collect before he has at
                     least one coupon of each type. Let’s call this random variable N. Now, this tool helps you solve
@@ -90,8 +91,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
                 </ul>
                 </p>
                 <div>
-                    <h1><b>INPUT SECTION</b>
-                    </h1>
+                    <h2><b>INPUT SECTION</b></h2>
                     <form>
                         <p>Number of types of coupons (n):</p>
                         <input type="number" id="cp_count" min="1"><br>
@@ -117,12 +117,11 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
                         <button type="button" onclick="cpSubmitOnClick()">Submit</button>
 
                     </form>
-                    <label id="cp_exception"></label>
 
 
                 </div>
                 <div id="cp_ret">
-                    <h3>OUTPUT SECTION</h3>
+                    <h2><b>OUTPUT SECTION</b></h2>
                     <form>
                         <p>E[N]</p>
                         <label id = "cp_expectedV"></label>
@@ -132,221 +131,161 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
                         <canvas id="cp_dist" width="200" height="200"></canvas>
                     </form>
             </div>
-
-            <div id="Pasta" class="w3-container menu w3-padding-32 w3-white">
-                <h1><b>Lasagna</b> <span class="w3-tag w3-grey w3-round">Popular</span> <span class="w3-right w3-tag w3-dark-grey w3-round">$13.50</span></h1>
-                <p class="w3-text-grey">Special sauce, mozzarella, parmesan, ground beef</p>
-                <hr>
-
-                <h1><b>Ravioli</b> <span class="w3-right w3-tag w3-dark-grey w3-round">$14.50</span></h1>
-                <p class="w3-text-grey">Ravioli filled with cheese</p>
-                <hr>
-
-                <h1><b>Spaghetti Classica</b> <span class="w3-right w3-tag w3-dark-grey w3-round">$11.00</span></h1>
-                <p class="w3-text-grey">Fresh tomatoes, onions, ground beef</p>
-                <hr>
-
-                <h1><b>Seafood pasta</b> <span class="w3-right w3-tag w3-dark-grey w3-round">$25.50</span></h1>
-                <p class="w3-text-grey">Salmon, shrimp, lobster, garlic</p>
-            </div>
-
-
-            <div id="Starter" class="w3-container menu w3-padding-32 w3-white">
-                <h1><b>Today's Soup</b> <span class="w3-tag w3-grey w3-round">Seasonal</span><span class="w3-right w3-tag w3-dark-grey w3-round">$5.50</span></h1>
-                <p class="w3-text-grey">Ask the waiter</p>
-                <hr>
-
-                <h1><b>Bruschetta</b> <span class="w3-right w3-tag w3-dark-grey w3-round">$8.50</span></h1>
-                <p class="w3-text-grey">Bread with pesto, tomatoes, onion, garlic</p>
-                <hr>
-
-                <h1><b>Garlic bread</b> <span class="w3-right w3-tag w3-dark-grey w3-round">$9.50</span></h1>
-                <p class="w3-text-grey">Grilled ciabatta, garlic butter, onions</p>
-                <hr>
-
-                <h1><b>Tomozzarella</b> <span class="w3-right w3-tag w3-dark-grey w3-round">$10.50</span></h1>
-                <p class="w3-text-grey">Tomatoes and mozzarella</p>
-            </div><br>
-
         </div>
-    </div>
-    <!-- <header>
-        <h1>Probability tools Huyen Nguyen x Nam Anh</h1>
-    </header> -->
-
-    <div class="w3-container w3-green">
-        <h2>Coupon collector problem</h2>
-        <p>
-            Description: There are n coupons in a collection. A collector has the ability to purchase a coupon,
-            can’t choose the coupon he purchases. Instead, the coupon is revealed to be coupon i with
-            probability pi = 1/n. Let N be the number of coupons he’ll need to collect before he has at
-            least one coupon of each type. Let’s call this random variable N. Now, this tool helps you solve
-            the following problems:
-            <ul>
-                <li>
-                    P1 The expected value of N when the coupons have equal probabilities of being collected.
-                </li>
-                <li>
-                    P2 The expected value of N when the coupons have unequal probabilities of being collected.
-                </li>
-                <li>
-                    P3 The variance of N when the coupons have equal probabilities of being collected.
-                </li>
-                <li>
-                    P4 The variance of N when the coupons have unequal probabilities of being collected.
-                </li>
-                <li>
-                    P5 The density function of N (meaning the entire distribution) when the coupons have
-                    equal probabilities.
-                </li>
-                <li>
-                    P6 The density function of N (meaning the entire distribution) when the coupons have
-                    unequal probabilities.
-                </li>
-            </ul>
-            
-        </p>
-    </div>
-
-    <div>
-        <h3>
-            INPUT SECTION
-        </h3>
-        <form>
-            <p>Number of coupon types:</p>
-            <input type="number" id="cp_count" min="1"><br>
-            <br>
-            <p>Problem type: </p>
-            <input type="radio" id="type_1" name="coupon probability" value="equal" onclick="cpType1OnClick()">
-            <label>Type 1: Probability of each coupon is equal</label> <br>
-            <input type="radio" id="type_2" name="coupon probability" value="unequal">
-            <label>Type 2: Probability of each coupons is unequal</label> 
-            <br>
-            <p>Probability of each coupon: 
-                <br>
-                Format: enter probability of each coupon per line. value must be larger than 0. 
-                <br>
-                (Skip for problem type 1)
-                
-            </p>
-
-            <textarea id="cp_prob" cols="40" rows="20"></textarea>
-            <!-- <input type="text" id="cp_prob"> -->
-            <br>
-            <br>
-            <button type="button" onclick="cpSubmitOnClick()">Submit</button>
-    
-        </form>
-        <label id="cp_exception"></label>
-    
-        
-    </div>
-    <div id="cp_ret">
-        <h3>OUTPUT SECTION</h3>
-        <form>
-            <p>E[N]</p>
-            <label id = "cp_expectedV"></label>
-            <p>Var[N]</p>
-            <label id = "cp_var"></label>
-            <p>Distribution density</p>
-            <canvas id="cp_dist" width="400" height="400"></canvas>  
-            
-        </form>
-    
-    </div>    
-
-    <h1>QUEUEING THEORY PROBLEM</h1>
-    <div>
-        <h3>DESCRIPTION</h3>
-        <p>
-            A system (e.g. banks, supermarkets, computers, public transport) has to deal with problems
-            related to queueing (waiting). The tools helps congestion analysis in the system.
-            <br />
-            A typical system involves two subjects (1) servers, (2) customers. It is always assumed that there is 
-            just a single queue (waiting line) and customers move from this single queue to the servers.
-            <br />
-            There are different types of queing systenms, whose general notation is A/S/c. Each element stands for:
-            <ul>
-                <li>A: Arrival process of customers. 
-                    <br />
-                    In reality, most arrival process follows Markov (M) model (exponential probability density).
-                 </li> 
-                <li>S: Server process: either
+            <div id="Queueing theory" class="w3-container menu w3-padding-32 w3-white">
+                <h1><b>QUEUEING THEORY PROBLEM</b></h1>
+                <div>
+                    <h3>DESCRIPTION</h3>
+                    <p class="w3-text-grey">
+                        A system (e.g. banks, supermarkets, computers, public transport) has to deal with problems
+                        related to queueing (waiting). The tools helps congestion analysis in the system.
+                        <br />
+                        A typical system involves two subjects (1) servers, (2) customers. It is always assumed that there is
+                        just a single queue (waiting line) and customers move from this single queue to the servers.
+                        <br />
+                        There are different types of queing systenms, whose general notation is A/S/c. Each element stands for:
                     <ul>
-                        <li>M (Markov): Exponential probability density</li>
-                        <li>G (General): Any arbitrary probability distribution</li>
+                        <li>A: Arrival process of customers.
+                            <br />
+                            In reality, most arrival process follows Markov (M) model (exponential probability density).
+                        </li>
+                        <li>S: Server process: either
+                            <ul>
+                                <li>M (Markov): Exponential probability density</li>
+                                <li>G (General): Any arbitrary probability distribution</li>
+                            </ul>
+                        <li>c: Number of servers</li>
                     </ul>
-                <li>c: Number of servers</li>
-            </ul>
-          
-            The tools helps congestion analysis in the system by answers to the following problems: 
-            <ul>
-                <li>What is the mean customer inter-arrival rate?</li>
-                <li>What is the mean service rate?</li>
-                <li>What is the variance of inter-arrival time?</li>
-                <li>What is the variance of service time?</li>
-                <li>What is the probability that the server is busy? </li>
-                <li>What is the mean number of customers in the queue?</li>
-                <li>What is the mean waiting time in the queue?</li>
-                <li>What is the mean waiting time in the system</li>
-                <li>What is the mean number of customers in the system?</li>
-                <li>What is the probability that the server is idle?</li>
-            </ul>
-        </p>
-    </div>
 
-    <div>
-        <h3>INPUT SECTION</h3>
-        <form>
-            <label>Queuing system type: </label> <br>
-            <input type="radio" id="qt_type_1" name="queue_type" value="M/M/1" checked></input> 
-            <label>M/M/1</label> <br>
-            <input type="radio" id="qt_type_2" name="queue_type" value="M/G/1"></input>
-            <label>M/G/1</label> <br>
-            <br>
-            <label>Mean customer inter-arrival time (minutes): </label>
-            <input type="number" id="mean_arv_time" min=0>
-            <br>
-            <label>Mean service time (minutes): </label>
-            <input type="number" id="mean_svc_time" min=0>
-            <br>
-            <button type="button" id="qt_submit" onclick="qtSubmitOnClick()">Submit</button>
-        </form>
+                    The tools helps congestion analysis in the system by answers to the following problems:
+                    <ul>
+                        <li>What is the mean customer inter-arrival rate?</li>
+                        <li>What is the mean service rate?</li>
+                        <li>What is the variance of inter-arrival time?</li>
+                        <li>What is the variance of service time?</li>
+                        <li>What is the probability that the server is busy? </li>
+                        <li>What is the mean number of customers in the queue?</li>
+                        <li>What is the mean waiting time in the queue?</li>
+                        <li>What is the mean waiting time in the system</li>
+                        <li>What is the mean number of customers in the system?</li>
+                        <li>What is the probability that the server is idle?</li>
+                    </ul>
+                    </p>
+                </div>
+
+                <div>
+                    <h2><b>INPUT SECTION</b></h2>
+                    <form>
+                        <label>Queuing system type: </label> <br>
+                        <input type="radio" id="qt_type_1" name="queue_type" value="M/M/1" checked></input>
+                        <label>M/M/1</label> <br>
+                        <input type="radio" id="qt_type_2" name="queue_type" value="M/G/1"></input>
+                        <label>M/G/1</label> <br>
+                        <br>
+                        <label>Mean customer inter-arrival time (minutes): </label>
+                        <input type="number" id="mean_arv_time" min=0>
+                        <br>
+                        <label>Mean service time (minutes): </label>
+                        <br>
+                        <input type="number" id="mean_svc_time" min=0>
+                        <br>
+                        <br>
+                        <button type="button" id="qt_submit" onclick="qtSubmitOnClick()">Submit</button>
+                    </form>
+
+                </div>
+                <div>
+                    <h2><b>OUTPUT SECTION</b></h2>
+                    <form>
+                        <label>Mean customer arrival rate: </label>
+                        <label id="mean_arv_rate"></label>
+                        <br>
+                        <label>Mean service rate: </label>
+                        <label id="mean_svc_rate"></label>
+                        <br>
+                        <label>Variance of customer arrival time:  </label>
+                        <label id="var_arv"></label>
+                        <br>
+                        <label>Variance of service time: </label>
+                        <label id="var_svc"></label>
+                        <br>
+                        <label>Probability that the server is busy: </label>
+                        <label id="p_svr_busy"></label>
+                        <br>
+                        <label>Mean number of customers in the queue: </label>
+                        <label id="mean_q_cust"></label>
+                        <br>
+                        <label>Mean waiting time in the queue: </label>
+                        <label id="mean_q_wait"></label>
+                        <br>
+                        <label>Mean nlsumber of customers in the system: </label>
+                        <label id="mean_sys_cust"></label>
+                        <br>
+                        <label>Mean waiting time in the system: </label>
+                        <label id="mean_sys_wait"></label>
+                        <br>
+                        <label>Probability that the server is idle: </label>
+                        <label id="p_svr_idle"></label>
+                    </form>
+                    <!-- About Container -->
+                    <div class="w3-container w3-padding-64 w3-red w3-grayscale w3-xlarge" id="us">
+                        <div class="w3-content">
+                            <h1 class="w3-center w3-jumbo" style="margin-bottom:64px">About</h1>
+                            <p>The Pizza Restaurant was founded in blabla by Mr. Italiano in lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            <p><strong>The Chef?</strong> Mr. Italiano himself<img src="/w3images/chef.jpg" style="width:150px" class="w3-circle w3-right" alt="Chef"></p>
+                            <p>We are proud of our interiors.</p>
+                            <img src="/w3images/onepage_restaurant.jpg" style="width:100%" class="w3-margin-top w3-margin-bottom" alt="Restaurant">
+                            <h1><b>Opening Hours</b></h1>
+
+                            <div class="w3-row">
+                                <div class="w3-col s6">
+                                    <p>Mon & Tue CLOSED</p>
+                                    <p>Wednesday 10.00 - 24.00</p>
+                                    <p>Thursday 10:00 - 24:00</p>
+                                </div>
+                                <div class="w3-col s6">
+                                    <p>Friday 10:00 - 12:00</p>
+                                    <p>Saturday 10:00 - 23:00</p>
+                                    <p>Sunday Closed</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="Next" class="w3-container menu w3-padding-32 w3-white">
+                <h1><b>WHAT'S NEXT?</b></h1>
+                <div>
+                    <p>To be honest, we have not had any plans on what would be the next problems to be solved. If you have any ideas, please let us know.</p>
+                    <p><a href="#about" class="w3-button w3-xxlarge w3-center w3-black">Contact us</a></p>
+                </div>
+            </div>
+        </div>
+</div>
+<!-- About Container -->
+<div class="w3-container w3-padding-64 w3-red w3-grayscale w3-xlarge" id="about">
+    <div class="w3-content">
+        <h1 class="w3-center w3-jumbo" style="margin-bottom:64px">About</h1>
+        <p>Math is no longer boring with the support of FunMath. FunMath was born in May, 2021, as a final project in Probability and Statistics course led by <strong>Prof. Linh Tran</strong>.</p>
+        <p><strong>The Team</strong> Nguyen Hoang Nam Anh, Nguyen Thu Huyen, Co2023 at Fulbright University Vietnam.</p>
+<!--        <img src="/w3images/onepage_restaurant.jpg" style="width:100%" class="w3-margin-top w3-margin-bottom" alt="Restaurant">-->
+        <h1><b>CONTRIBUTE</b></h1>
+        <p>FunMath aims to be a helpful tools for students to learn Probability and Statistics! The project is open source and to ensure its continued development and maintenance we need your support. Feel free to reach out us if you want to be a part of FunMath.</p>
+
+        <div class="w3-row">
+            <div class="w3-col s6">
+                <p><strong>Nguyen Hoang Nam Anh</strong></p>
+                <p><strong>Nguyen Thu Huyen</strong></p>
+            </div>
+            <div class="w3-col s6">
+                <p>anh.nguyen.190005@student.fulbright.edu.vn</p>
+                <p>huyen.nguyen.190033@student.fulbright.edu.vn</p>
+            </div>
+        </div>
 
     </div>
-    <div>
-        <h3>OUTPUT SECTION</h3>
-        <form>
-            <label>Mean customer arrival rate: </label> 
-            <label id="mean_arv_rate"></label>
-            <br>
-            <label>Mean service rate: </label> 
-            <label id="mean_svc_rate"></label>
-            <br>
-            <label>Variance of customer arrival time:  </label>
-            <label id="var_arv"></label>
-            <br>
-            <label>Variance of service time: </label>
-            <label id="var_svc"></label>
-            <br>
-            <label>Probability that the server is busy: </label>
-            <label id="p_svr_busy"></label>
-            <br>
-            <label>Mean number of customers in the queue: </label>
-            <label id="mean_q_cust"></label>
-            <br>
-            <label>Mean waiting time in the queue: </label>
-            <label id="mean_q_wait"></label>
-            <br> 
-            <label>Mean nlsumber of customers in the system: </label>
-            <label id="mean_sys_cust"></label>
-            <br>
-            <label>Mean waiting time in the system: </label>
-            <label id="mean_sys_wait"></label>
-            <br>
-            <label>Probability that the server is idle: </label>
-            <label id="p_svr_idle"></label>
-        </form>
+</div>
 
     <script src="script.js"></script>
         <script>
