@@ -192,16 +192,19 @@ document.getElementById("myLink").click();
 const qtSubmitOnClick = () => {
     var mean_arv_time = document.getElementById("mean_arv_time").value;
     var mean_svc_time = document.getElementById("mean_svc_time").value;
-    
-
     var type_1 = document.getElementById("qt_type_1").checked;
     var type_2 = document.getElementById("qt_type_2").checked;
-    console.log(mean_arv_time);
-    if (type_1) qtCalType1(mean_arv_time, mean_svc_time);
-        
-    else if (type_2) qtCalType2();
-    else throw new Error ("select queueing system type");
-}
+
+    if (qtValidateInput(mean_arv_time, mean_svc_time))
+    {
+        if (type_1) qtCalType1(mean_arv_time, mean_svc_time);
+        else if (type_2) qtCalType2();
+        else throw new Error ("select queueing system type");
+    }
+
+    }
+ 
+   
 
 function qtCalType1 (mean_arv_time, mean_svc_time) {
     var lambda = 1/mean_arv_time;
@@ -214,8 +217,6 @@ function qtCalType1 (mean_arv_time, mean_svc_time) {
     var w = w_q + 1/mu;
     var l = lambda * w;
     var p_svr_idle = 1 - p_svr_busy;
-
-    console.log("success");
     document.getElementById("mean_arv_rate").innerHTML = lambda;
     document.getElementById("mean_svc_rate").innerHTML = mu;
     document.getElementById("var_arv").innerHTML = var_arv;
@@ -228,10 +229,21 @@ function qtCalType1 (mean_arv_time, mean_svc_time) {
     document.getElementById("p_svr_idle").innerHTML = p_svr_idle;
 
 }
+
+// M/G/1 
 function qtCalType2() {
 
 }
-function qtValidateInput(){
+function qtValidateInput(mean_arv_time, mean_svc_time){
+    if (mean_arv_time == 0) document.getElementById("qt_exception").innerHTML += 
+        "customer inter-arrival time must be positive <br />";
+    if (mean_svc_time == 0) document.getElementById("qt_exception").innerHTML +=
+        "service time must be positive";
+    if (mean_arv_time < mean_svc_time) document.getElementById("qt_exception").innerHTML +=
+        "service time must be less than customer inter-arrival time, " +
+        "or your queue of customers would be infinite";
+    return (mean_arv_time * mean_svc_time != 0) 
+        && (mean_arv_time - mean_svc_time > 0);
 
 }
 
