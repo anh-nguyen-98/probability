@@ -183,19 +183,16 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Times New Roman", sans-serif}
                         <input type="radio" id="qt_type_2" name="queue_type" value="M/G/1" onclick="qtType2InputShow();"></input>
                         <label>M/G/1</label> <br>
                         <br>
+                        <label>Mean customer inter-arrival time (minutes): </label>
+                        <input type="number" id="mean_arv_time" min=0>
+                        <br>
                         <div id="qt_type_1_input"style="display: block;">
-                            <label>Mean customer inter-arrival time (minutes): </label>
-                            <input type="number" id="mean_arv_time" min=0>
-                            <br>
                             <label>Mean service time (minutes): </label>
                             <br>
                             <input type="number" id="mean_svc_time" min=0>
                         </div>
 
                         <div id="qt_type_2_input" style="display: none;">
-                            <label>Mean customer inter-arrival time (minutes): </label>
-                            <input type="number" id="mean_arv_time" min=0>
-                            <br>
                             <label>Minimum service time (minutes): </label>
                             <br>
                             <input type="number" id="min_svc_time" min=0>
@@ -233,13 +230,13 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Times New Roman", sans-serif}
                         <label>Mean number of customers in the queue: </label>
                         <label id="mean_q_cust"></label>
                         <br>
-                        <label>Mean waiting time in the queue: </label>
+                        <label>Mean waiting time in the queue (minutes): </label>
                         <label id="mean_q_wait"></label>
                         <br>
-                        <label>Mean nlsumber of customers in the system: </label>
+                        <label>Mean number of customers in the system: </label>
                         <label id="mean_sys_cust"></label>
                         <br>
-                        <label>Mean waiting time in the system: </label>
+                        <label>Mean waiting time in the system (minutes): </label>
                         <label id="mean_sys_wait"></label>
                         <br>
                         <label>Probability that the server is idle: </label>
