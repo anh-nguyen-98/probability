@@ -211,7 +211,7 @@ const qtSubmitOnClick = () => {
     if (qtValidateInput(mean_arv_time, mean_svc_time))
     {
         if (type_1) qtCalType1(mean_arv_time, mean_svc_time);
-        else if (type_2) qtCalType2();
+        else if (type_2) qtCalType2(mean_arv_time, mean_svc_time);
         else throw new Error ("select queueing system type");
     }
 
@@ -244,8 +244,28 @@ function qtCalType1 (mean_arv_time, mean_svc_time) {
 }
 
 // M/G/1 
-function qtCalType2() {
-
+function qtCalType2(mean_arv_time, min_svc_time, max_svc_time) {
+    var lambda = 1/mean_arv_rate;
+    var mean_svc_time = (min_svc_time+max_svc_time)/2;
+    var mean_svc_rate = 1/mean_svc_time;
+    var var_svc_time = math.pow((max_svc_time-min_svc_time),2)/12;
+    var var_arv_time = 1/math.pow(lamda, 2);
+    var prob_busy = lamda/mean_svc_rate;
+    var mean_queue_customer = (math.pow(lamda,2)*var_svc_time+math.pow(prob_busy,2))/2*(1-prob_busy);
+    var mean_queue_waiting = mean_queue_customer/lamda;
+    var mean_sys_waiting = mean_queue_waiting+1/mean_svc_rate;
+    var mean_sys_customer = lamda*mean_sys_waiting
+    var prob_idle = 1- prob_busy;
+    document.getElementById("mean_arv_rate").innerHTML = lambda;
+    document.getElementById("mean_svc_rate").innerHTML = mean_svc_rate;
+    document.getElementById("var_arv").innerHTML = var_arv_time;
+    document.getElementById("var_svc").innerHTML = var_svc_time;
+    document.getElementById("p_svr_busy").innerHTML = prob_busy;
+    document.getElementById("mean_q_cust").innerHTML = mean_queue_customer;
+    document.getElementById("mean_q_wait").innerHTML = mean_queue_waiting;
+    document.getElementById("mean_sys_cust").innerHTML = mean_sys_customer;
+    document.getElementById("mean_sys_wait").innerHTML = mean_sys_waiting;
+    document.getElementById("p_svr_idle").innerHTML = prob_idle;
 }
 function qtValidateInput(mean_arv_time, mean_svc_time){
     var err = "";
