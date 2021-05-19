@@ -15,8 +15,8 @@ const cpSubmitOnClick = () => {
     var type_2 = document.getElementById("type_2").checked;
     var p_lst = document.getElementById("cp_prob").value
                         .split("\n")
-                        .map(p => parseFloat(p))
-                        .filter(p => !isNaN(p) && p > 0 && p <= 1);
+                        .map(p => parseFloat(p));
+                        // .filter(p => !isNaN(p) && p > 0 && p <= 1);
     console.log(p_lst);
     if (!cpValidateInput(n, type_1, type_2, p_lst)) return;
     if (type_1) cpCalType1(n);
@@ -26,20 +26,22 @@ const cpSubmitOnClick = () => {
 }
 
 function cpValidateInput (n, type_1, type_2, p_lst) {
-    if (n == "") 
-        document.getElementById("cp_exception").innerHTML += "Error: number of coupon types can't be empty <br />";
+    var err = "";
+    if (n == "") err += "Error: number of coupon types can't be empty \n";
+    if (!(type_1 | type_2)) err += "Error: problem type unselected \n";
+    if (type_2) {
+        for (var i = 0; i < p_lst.length; i ++) {
+            var p = p_lst[i];
+            if (isNaN(p)) err += "Error: input for probability is not a number";
+            if (p <= 0 || p > 1) err += "Error: probability must be larger than 0 and less than 1";
+        }
+        if (p_lst.length != n) err += "Error: missing input for probability\n";
+        if (p_lst.reduce((a, b) => a + b, 0) != 1) err += "Error: sum of coupon probability is not 1 \n";
+    }
+ 
+    if (err != "") alert (err);
 
-    if (!(type_1 | type_2)) 
-        document.getElementById("cp_exception").innerHTML += "Error: problem type unchecked <br />";
-    
-    if (type_2 && p_lst.length != n) 
-        document.getElementById("cp_exception").innerHTML += "Error: missing/ incorrect-format coupon probability input <br />";
-    
-    if (type_2 && p_lst.reduce((a, b) => a + b, 0) != 1)
-        document.getElementById("cp_exception").innerHTML += "Error: sum of coupon probability is not 1 <br />";
-
-    return  n != "" && (type_1 | (type_2 && p_lst.length == n
-                                    && p_lst.reduce((a, b) => a + b, 0) == 1));
+    return err == "";
 }
 
 function cpCalType1 (n) {
@@ -235,15 +237,14 @@ function qtCalType2() {
 
 }
 function qtValidateInput(mean_arv_time, mean_svc_time){
-    if (mean_arv_time == 0) document.getElementById("qt_exception").innerHTML += 
-        "customer inter-arrival time must be positive <br />";
-    if (mean_svc_time == 0) document.getElementById("qt_exception").innerHTML +=
-        "service time must be positive";
-    if (mean_arv_time < mean_svc_time) document.getElementById("qt_exception").innerHTML +=
-        "service time must be less than customer inter-arrival time, " +
+    var err = "";
+    if (mean_arv_time == 0) err += "customer inter-arrival time must be positive \n";
+    if (mean_svc_time == 0) err += "service time must be positive \n";
+    if (mean_arv_time < mean_svc_time) 
+        err += "service time must be less than customer inter-arrival time, " +
         "or your queue of customers would be infinite";
-    return (mean_arv_time * mean_svc_time != 0) 
-        && (mean_arv_time - mean_svc_time > 0);
+    if (err != "") alert(err);
+    return err == "";
 
 }
 
