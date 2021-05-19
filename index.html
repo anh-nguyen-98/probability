@@ -14,45 +14,52 @@
     <!-- <header>
         <h1>Probability tools Huyen Nguyen x Nam Anh</h1>
     </header> -->
-    <h2>Coupon collector problem</h2>
-    <p>
-        Description: There are n coupons in a collection. A collector has the ability to purchase a coupon, but
-        can’t choose the coupon he purchases. Instead, the coupon is revealed to be coupon i with
-        probability pi = 1/n. Let N be the number of coupons he’ll need to collect before he has at
-        least one coupon of each type. Let’s call this random variable N. Now, this tool helps you solve
-        the following problems:
-        <ul>
-            <li>
-                P1 The expected value of N when the coupons have equal probabilities of being collected.
-            </li>
-            <li>
-                P2 The expected value of N when the coupons have unequal probabilities of being collected.
-            </li>
-            <li>
-                P3 The variance of N when the coupons have equal probabilities of being collected.
-            </li>
-            <li>
-                P4 The variance of N when the coupons have unequal probabilities of being collected.
-            </li>
-            <li>
+
+    <!--COUPON COLLECTOR PROBLEM-->
+
+    <h1>COUPON COLLECTOR PROBLEM</h1>
+    <div>
+        <h3>DESCRIPTION</h3>
+        <p>
+            There are n coupons in a collection. A collector has the ability to purchase a coupon, but
+            can’t choose the coupon he purchases. Instead, the coupon is revealed to be coupon i with
+            probability pi = 1/n. Let N be the number of coupons he’ll need to collect before he has at
+            least one coupon of each type. Let’s call this random variable N. Now, this tool helps you solve
+            the following problems:
+            <ul>
+                <li>
+                    P1 The expected value of N when the coupons have equal probabilities of being collected.
+                </li>
+                <li>
+                    P2 The expected value of N when the coupons have unequal probabilities of being collected.
+                </li>
+                <li>
+                    P3 The variance of N when the coupons have equal probabilities of being collected.
+                </li>
+                <li>
+                    P4 The variance of N when the coupons have unequal probabilities of being collected.
+                </li>
+                <li>
+                    
+                    P5 The density function of N (meaning the entire distribution) when the coupons have
+                    equal probabilities.
+                </li>
+                <li>
+                    P6 The density function of N (meaning the entire distribution) when the coupons have
+                    unequal probabilities.
+                </li>
+            </ul>
                 
-                P5 The density function of N (meaning the entire distribution) when the coupons have
-                equal probabilities.
-            </li>
-            <li>
-                P6 The density function of N (meaning the entire distribution) when the coupons have
-                unequal probabilities.
-            </li>
-        </ul>
-          
-        
-    </p>
+            
+        </p>
+    </div>
+    
     <div>
         <h3>
             INPUT SECTION
         </h3>
         <form>
-            <p>Number of types of coupons (n):</p>
+            <p>Number of coupon types:</p>
             <input type="number" id="cp_count" min="1"><br>
             <br>
             <p>Problem type: </p>
@@ -74,11 +81,11 @@
             <br>
             <br>
             <button type="button" onclick="cpSubmitOnClick()">Submit</button>
-   
+    
         </form>
         <label id="cp_exception"></label>
     
-     
+        
     </div>
     <div id="cp_ret">
         <h3>OUTPUT SECTION</h3>
@@ -88,12 +95,105 @@
             <p>Var[N]</p>
             <label id = "cp_var"></label>
             <p>Distribution density</p>
-            <canvas id="cp_dist" width="400" height="400"></canvas>
-          
-          
+            <canvas id="cp_dist" width="400" height="400"></canvas>  
+            
         </form>
     
+    </div>    
+
+    <h1>QUEUEING THEORY PROBLEM</h1>
+    <div>
+        <h3>DESCRIPTION</h3>
+        <p>
+            A system (e.g. banks, supermarkets, computers, public transport) has to deal with problems
+            related to queueing (waiting). The tools helps congestion analysis in the system.
+            <br />
+            A typical system involves two subjects (1) servers, (2) customers. It is always assumed that there is 
+            just a single queue (waiting line) and customers move from this single queue to the servers.
+            <br />
+            There are different types of queing systenms, whose general notation is A/S/c. Each element stands for:
+            <ul>
+                <li>A: Arrival process of customers. 
+                    <br />
+                    In reality, most arrival process follows Markov (M) model (exponential probability density).
+                 </li> 
+                <li>S: Server process: either
+                    <ul>
+                        <li>M (Markov): Exponential probability density</li>
+                        <li>G (General): Any arbitrary probability distribution</li>
+                    </ul>
+                <li>c: Number of servers</li>
+            </ul>
+          
+            The tools helps congestion analysis in the system by answers to the following problems: 
+            <ul>
+                <li>What is the mean customer inter-arrival rate?</li>
+                <li>What is the mean service rate?</li>
+                <li>What is the variance of inter-arrival time?</li>
+                <li>What is the variance of service time?</li>
+                <li>What is the probability that the server is busy? </li>
+                <li>What is the mean number of customers in the queue?</li>
+                <li>What is the mean waiting time in the queue?</li>
+                <li>What is the mean waiting time in the system</li>
+                <li>What is the mean number of customers in the system?</li>
+                <li>What is the probability that the server is idle?</li>
+            </ul>
+        </p>
     </div>
+
+    <div>
+        <h3>INPUT SECTION</h3>
+        <form>
+            <label>Queuing system type: </label> <br>
+            <input type="radio" id="qt_type_1" name="queue_type" value="M/M/1" checked></input> 
+            <label>M/M/1</label> <br>
+            <input type="radio" id="qt_type_2" name="queue_type" value="M/G/1"></input>
+            <label>M/G/1</label> <br>
+            <br>
+            <label>Mean customer inter-arrival time (minutes): </label>
+            <input type="number" id="mean_arv_time" min=0>
+            <br>
+            <label>Mean service time (minutes): </label>
+            <input type="number" id="mean_svc_time" min=0>
+            <br>
+            <button type="button" id="qt_submit" onclick="qtSubmitOnClick()">Submit</button>
+        </form>
+
+    </div>
+    <div>
+        <h3>OUTPUT SECTION</h3>
+        <form>
+            <label>Mean customer arrival rate: </label> 
+            <label id="mean_arv_rate"></label>
+            <br>
+            <label>Mean service rate: </label> 
+            <label id="mean_svc_rate"></label>
+            <br>
+            <label>Variance of customer arrival time:  </label>
+            <label id="var_arv"></label>
+            <br>
+            <label>Variance of service time: </label>
+            <label id="var_svc"></label>
+            <br>
+            <label>Probability that the server is busy: </label>
+            <label id="p_svr_busy"></label>
+            <br>
+            <label>Mean number of customers in the queue: </label>
+            <label id="mean_q_cust"></label>
+            <br>
+            <label>Mean waiting time in the queue: </label>
+            <label id="mean_q_wait"></label>
+            <br> 
+            <label>Mean nlsumber of customers in the system: </label>
+            <label id="mean_sys_cust"></label>
+            <br>
+            <label>Mean waiting time in the system: </label>
+            <label id="mean_sys_wait"></label>
+            <br>
+            <label>Probability that the server is idle: </label>
+            <label id="p_svr_idle"></label>
+        </form>
+
     <script src="script.js"></script>
 
     
