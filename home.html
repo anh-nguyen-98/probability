@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
-<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js'></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
 <style>
 body, html {height: 100%}
-body,h1,h2,h3,h4,h5,h6 {font-family: "Times New Roman", sans-serif}
+body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
 .menu {display: none}
 .bgimg {
   background-repeat: no-repeat;
@@ -106,15 +106,14 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Times New Roman", sans-serif}
                         <label>Number of types of coupons: 
                         <h3><i>It must be larger than 0.</i> </h3>
                         </label>
-                        <input type="number" id="cp_count" min="1"><br>
-                        <label>Probability of each coupon: </label> 
-                        <h3> 
+                        <label>Probability of each coupon: </label>
+                        <h3>
                             <i>Probability must be larger than 0 and less than 1. <br></i>
-                            <i>Type 1: 
+                            <i>Type 1:
                             Enter one input only.
                             </i> <br>
                             <i>
-                                Type 2: Enter input for each coupon on each line. 
+                                Type 2: Enter input for each coupon on each line.
                             </i>
                         </h3>
 
@@ -129,13 +128,13 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Times New Roman", sans-serif}
                 <div id="cp_ret">
                     <h2><b>OUTPUT SECTION</b></h2>
                     <form>
-                        <label>E[N]: </label>
+                        <label>Expected value of X: </label>
                         <label id = "cp_expectedV"></label>
                         <br>
-                        <label>Var[N]: </label>
+                        <label>Variance of X: </label>
                         <label id = "cp_var"></label>
                         <br>
-                        <p>Distribution density</p>
+                        <p>Distribution density: </p>
                         <canvas id="cp_dist" width="200" height="200"></canvas>
                     </form>
                 </div>
@@ -151,7 +150,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Times New Roman", sans-serif}
                         A typical system involves two subjects (1) servers, (2) customers. It is always assumed that there is
                         just a single queue (waiting line) and customers move from this single queue to the servers.
                         <br />
-                        There are different types of queing systems, whose general notation is A/S/c. 
+                        There are different types of queing systems, whose general notation is A/S/c.
                     </p>
                     <button onclick="qtShowNotation()">View Notation Details</button> 
                     <div id="qt notation" style="display: none">
