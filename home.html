@@ -61,58 +61,64 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
                 <h1><b>COUPON COLLECTOR</b> </h1>
                 <h3><b>DESCRIPTION</b></h3>
                 <p class="w3-text-grey">
-                    There are n coupons in a collection. A collector has the ability to purchase a coupon, but
+                    There are multiple coupons in a collection. A collector has the ability to purchase a coupon, but
                     can’t choose the coupon he purchases. Instead, the coupon is revealed to be coupon i with
-                    probability pi = 1/n. Let X be the number of coupons he’ll need to collect before he has at
-                    least one coupon of each type. Let’s call this random variable N. Now, this tool helps you solve
-                    the following problems:
-                <ul>
-                    <li>
-                        P1 The expected value of N when the coupons have equal probabilities of being collected.
-                    </li>
-                    <li>
-                        P2 The expected value of N when the coupons have unequal probabilities of being collected.
-                    </li>
-                    <li>
-                        P3 The variance of N when the coupons have equal probabilities of being collected.
-                    </li>
-                    <li>
-                        P4 The variance of N when the coupons have unequal probabilities of being collected.
-                    </li>
-                    <li>
-
-                        P5 The density function of N (meaning the entire distribution) when the coupons have
-                        equal probabilities.
-                    </li>
-                    <li>
-                        P6 The density function of N (meaning the entire distribution) when the coupons have
-                        unequal probabilities.
-                    </li>
-                </ul>
+                    probability pi. Let N be the number of coupons he’ll need to collect before he has at
+                    least one coupon of each type. Let’s call this random variable X. Now, this tool helps you solve
+                    the following questions.
                 </p>
+                <button onclick="cpShowProbs()">View Questions</button>
+                <div id="cp problems" style="display: none;">
+                    <ul>
+                        <li>
+                            What is the expected value of X when the coupons have equal probabilities of being collected?
+                        </li>
+                        <li>
+                            
+                            what is the expected value of X when the coupons have unequal probabilities of being collected?
+                        </li>
+                        <li>
+                            What is the variance of X when the coupons have equal probabilities of being collected?
+                        </li>
+                        <li>
+                            What is the variance of X when the coupons have unequal probabilities of being collected?
+                        </li>
+                        <li>
+                            What is the density function of X (meaning the entire distribution) when the coupons have
+                            equal probabilities?
+                        </li>
+                        <li>
+                            What is the density function of X (meaning the entire distribution) when the coupons have
+                            unequal probabilities?
+                        </li>
+                    </ul>
+                </div>
+               
+                
                 <div>
                     <h2><b>INPUT SECTION</b></h2>
                     <form>
-                        <p>Number of types of coupons (n):</p>
-                        <input type="number" id="cp_count" min="1"><br>
-                        <br>
-                        <p>Problem type: </p>
-                        <input type="radio" id="type_1" name="coupon probability" value="equal" onclick="cpType1OnClick()" style="height:25px; width:25px; vertical-align: middle;" CHECKED>
-                        <label>Type 1: Probability of each coupon is equal</label> <br>
-                        <input type="radio" id="type_2" name="coupon probability" value="unequal" style="height:25px; width:25px; vertical-align: middle;" CHECKED>
-                        <label>Type 2: Probability of each coupon is unequal</label>
-                        <br>
-                        <p>Probability of each coupon:
-                            <br>
-                            Format: enter probability of each coupon per line. value must be larger than 0.
-                            <br>
-                            (Skip for problem type 1)
-
-                        </p>
+                        <label>Type of problem: </label><br />
+                        <input type="radio" id="type_1" name="coupon probability" value="equal" checked style="height:25px; width:25px; vertical-align: middle;" >
+                        <label>Type 1: Probability of each coupon is equal</label> <br />
+                        <input type="radio" id="type_2" name="coupon probability" value="unequal" style="height:25px; width:25px; vertical-align: middle;" >
+                        <label>Type 2: Probability of each coupons is unequal</label> <br />
+                        <label>Number of types of coupons: 
+                        <h3><i>It must be larger than 0.</i> </h3>
+                        </label>
+                        <label>Probability of each coupon: </label>
+                        <h3>
+                            <i>Probability must be larger than 0 and less than 1. <br></i>
+                            <i>Type 1:
+                            Enter one input only.
+                            </i> <br>
+                            <i>
+                                Type 2: Enter input for each coupon on each line.
+                            </i>
+                        </h3>
 
                         <textarea id="cp_prob" cols="24" rows="4"></textarea>
                         <!-- <input type="text" id="cp_prob"> -->
-                        <br>
                         <br>
                         <button type="button" onclick="cpSubmitOnClick()">Submit</button>
 
@@ -144,61 +150,73 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
                         A typical system involves two subjects (1) servers, (2) customers. It is always assumed that there is
                         just a single queue (waiting line) and customers move from this single queue to the servers.
                         <br />
-                        There are different types of queueing systems, whose general notation is A/S/c. Each element stands for:
-                    <ul>
-                        <li>A: Arrival process of customers.
-                            <br />
-                            In reality, most arrival process follows Markov (M) model (exponential probability density).
-                        </li>
-                        <li>S: Server process: either
-                            <ul>
-                                <li>M (Markov): Exponential probability density</li>
-                                <li>G (General): Any arbitrary probability distribution</li>
-                            </ul>
-                        <li>c: Number of servers</li>
-                    </ul>
-
-                    The tools helps congestion analysis in the system by answers to the following problems:
-                    <ul>
-                        <li>What is the mean customer inter-arrival rate?</li>
-                        <li>What is the mean service rate?</li>
-                        <li>What is the variance of inter-arrival time?</li>
-                        <li>What is the variance of service time?</li>
-                        <li>What is the probability that the server is busy? </li>
-                        <li>What is the mean number of customers in the queue?</li>
-                        <li>What is the mean waiting time in the queue?</li>
-                        <li>What is the mean waiting time in the system</li>
-                        <li>What is the mean number of customers in the system?</li>
-                        <li>What is the probability that the server is idle?</li>
-                    </ul>
+                        There are different types of queing systems, whose general notation is A/S/c.
                     </p>
+                    <button onclick="qtShowNotation()">View Notation Details</button> 
+                    <div id="qt notation" style="display: none">
+                        <ul>
+                            <li>A: Arrival process of customers.
+                                <br />
+                                In reality, most arrival process follows Markov (M) model (exponential probability density).
+                            </li>
+                            <li>S: Server process: either
+                                <ul>
+                                    <li>M (Markov): Exponential probability density</li>
+                                    <li>G (General): Any arbitrary probability distribution</li>
+                                </ul>
+                            <li>c: Number of servers</li>
+                        </ul>
+                    </div>
+                   
+                    <p>The tools helps congestion analysis in the system by answers to the following questions.</p>
+                     
+
+                    <button onclick="qtShowProbs()">View Questions</button>
+                    <div id="qt problems" style="display: none">
+                        <ul>
+                            <li>What is the mean customer inter-arrival rate?</li>
+                            <li>What is the mean service rate?</li>
+                            <li>What is the variance of inter-arrival time?</li>
+                            <li>What is the variance of service time?</li>
+                            <li>What is the probability that the server is busy? </li>
+                            <li>What is the mean number of customers in the queue?</li>
+                            <li>What is the mean waiting time in the queue?</li>
+                            <li>What is the mean waiting time in the system</li>
+                            <li>What is the mean number of customers in the system?</li>
+                            <li>What is the probability that the server is idle?</li>
+                        </ul>
+                    </div>
+                    
+                    
                 </div>
 
                 <div>
                     <h2><b>INPUT SECTION</b></h2>
                     <form>
                         <label>Queuing system type: </label> <br>
-                        <input type="radio" id="qt_type_1" name="queue_type" value="M/M/1" checked onclick="qtType1InputShow();" style="height:25px; width:25px; vertical-align: middle;" CHECKED></input>
+                        <input type="radio" id="qt_type_1" name="queue_type" value="M/M/1" checked onclick="qtType1InputShow();" style="height:25px; width:25px; vertical-align: middle;" ></input>
                         <label>M/M/1</label> <br>
-                        <input type="radio" id="qt_type_2" name="queue_type" value="M/G/1" onclick="qtType2InputShow();" style="height:25px; width:25px; vertical-align: middle;" CHECKED></input>
+                        <input type="radio" id="qt_type_2" name="queue_type" value="M/G/1" onclick="qtType2InputShow();" style="height:25px; width:25px; vertical-align: middle;" ></input>
                         <label>M/G/1</label> <br>
                         <br>
                         <label>Mean customer inter-arrival time (minutes): </label>
+                        <h3><i> The value must be larger than 0.</i></h3>
                         <input type="number" id="mean_arv_time" min=0>
                         <br>
                         <div id="qt_type_1_input"style="display: block;">
                             <label>Mean service time (minutes): </label>
-                            <br>
+                            <h3><i> The value must be larger than 0 and less than mean customer inter-arrival time. Or your queue would be infinite.</i></h3>
                             <input type="number" id="mean_svc_time" min=0>
                         </div>
 
                         <div id="qt_type_2_input" style="display: none;">
                             <label>Minimum service time (minutes): </label>
-                            <br>
+                            <h3><i> The value must be larger than 0 and less than mean customer inter-arrival time. Or your queue would be infinite.</i></h3>
                             <input type="number" id="min_svc_time" min=0>
                             <br>
                             <label>Maximum service time (minutes): </label>
-                            <br>
+                            <h3><i> The value must be larger than 0 and minimum service time, and less than mean customer inter-arrival time. 
+                                Or your queue would be infinite.</i></h3>
                             <input type="number" id="max_svc_time" min=0>
 
                         </div>

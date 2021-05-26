@@ -29,11 +29,20 @@ function cpValidateInput (n, type_1, type_2, p_lst) {
     var err = "";
     if (n == "") err += "Error: number of coupon types can't be empty \n";
     if (!(type_1 | type_2)) err += "Error: problem type unselected \n";
+    if (type_1) {
+        if (p_lst.length != 1) err += "One input allowed only for this type of problem \n";
+        else {
+            var p = p_lst[0];
+            if (isNaN(p)) err += "Error: input for probability is not a number \n";
+            if (p <= 0 || p > 1) err += "Error: probability must be larger than 0 and less than 1 \n";
+            if (p * n != 1) err += "Error: sum of coupon probability is not 1 \n";
+        }
+    }
     if (type_2) {
         for (var i = 0; i < p_lst.length; i ++) {
             var p = p_lst[i];
-            if (isNaN(p)) err += "Error: input for probability is not a number";
-            if (p <= 0 || p > 1) err += "Error: probability must be larger than 0 and less than 1";
+            if (isNaN(p)) err += "Error: input for probability is not a number \n";
+            if (p <= 0 || p > 1) err += "Error: probability must be larger than 0 and less than 1 \n";
         }
         if (p_lst.length != n) err += "Error: missing input for probability\n";
         if (p_lst.reduce((a, b) => a + b, 0) != 1) err += "Error: sum of coupon probability is not 1 \n";
@@ -209,9 +218,10 @@ const qtSubmitOnClick = () => {
     var type_1 = document.getElementById("qt_type_1").checked;
     var type_2 = document.getElementById("qt_type_2").checked;
 
-    if (type_1 && qtValidateInput(mean_arv_time, mean_svc_time)) qtCalType1(mean_arv_time, mean_svc_time);
-    else if (type_2) qtCalType2(mean_arv_time, min_svc_time, max_svc_time);
-    else throw new Error ("select queueing system type");
+    if (type_1 && qtValidateInputType1(mean_arv_time, mean_svc_time))
+        qtCalType1(mean_arv_time, mean_svc_time);
+    else if (type_2 && qtValidateInputType2(mean_arv_time, min_svc_time, max_svc_time)) 
+        qtCalType2(mean_arv_time, min_svc_time, max_svc_time);
     
 
 }
@@ -266,19 +276,61 @@ function qtCalType2(mean_arv_time, min_svc_time, max_svc_time) {
     document.getElementById("mean_sys_wait").innerHTML = mean_sys_waiting;
     document.getElementById("p_svr_idle").innerHTML = prob_idle;
 }
-function qtValidateInput(mean_arv_time, mean_svc_time){
+function qtValidateInputType1(mean_arv_time, mean_svc_time){
     var err = "";
-    if (mean_arv_time <= 0) err += "customer inter-arrival time must be positive \n";
-    if (mean_svc_time <= 0) err += "service time must be positive \n";
-    if (mean_arv_time < mean_svc_time) 
-        err += "service time must be less than customer inter-arrival time, or your queue of customers would be infinite";
+    if (isNaN(mean_arv_time) || isNaN(mean_svc_time)) err += "Error: input values must be numbers\n";
+    else {
+        if (mean_arv_time <= 0) err += "Error: customer inter-arrival time must be positive \n";
+        if (mean_svc_time <= 0) err += "Error: service time must be positive \n";
+        if (mean_arv_time < mean_svc_time) 
+            err += "Error: service time must be less than customer inter-arrival time, or your queue of customers would be infinite \n";
+    }
+ 
     if (err != "") alert(err);
     return err == "";
 
 }
 
+function qtValidateInputType2(mean_arv_time, min_svc_time, max_svc_time){
+    var err = "";
+    if (isNaN(mean_arv_time) || isNaN(min_svc_time) || isNaN(max_svc_time)) err += "Error: input values must be numbers\n";
+    else {
+        if (mean_arv_time <= 0) err += "Error: customer inter-arrival time must be positive \n";
+        if (min_svc_time <= 0 || max_svc_time <= 0) err += "Error: service time must be positive \n";
+        if (min_svc_time > max_svc_time) err += "Error: minimum service time cannot be larger than maximum service time \n";
+        if (max_svc_time >= mean_arv_time) 
+            err += "Error: service time must be less than customer inter-arrival time, or your queue of customers would be infinite\n";
+    }
+
+    if (err != "") alert(err);
+    return err == "";
+
+}
+const cpShowProbs=() => {
+    var x = document.getElementById("cp problems");
+    if (x.style.display === "none") {
+        x.style.display = "block";  
+    } else {
+        x.style.display = "none";
+  }
+}
 
 
+const qtShowProbs=() => {
+    var x = document.getElementById("qt problems");
+    if (x.style.display === "none") {
+        x.style.display = "block";  
+    } else {
+        x.style.display = "none";
+  }
+}
 
-
+const qtShowNotation=() => {
+    var x = document.getElementById("qt notation");
+    if (x.style.display === "none") {
+        x.style.display = "block";  
+    } else {
+        x.style.display = "none";
+  }
+}
 
