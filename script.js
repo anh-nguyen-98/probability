@@ -82,6 +82,7 @@ function cpCalType1 (n) {
     document.getElementById("cp_expectedV").innerHTML = exp_v;
     document.getElementById("cp_var").innerHTML = variance;
     var ctx = document.getElementById("cp_dist").getContext('2d');
+    
     buildChart(ctx, dist);
       
 }
