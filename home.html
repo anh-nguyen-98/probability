@@ -58,37 +58,37 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Times New Roman", sans-serif}
         </div>
 
             <div id="Coupon collector" class="w3-container menu w3-padding-32 w3-white">
-                <h1><b>COUPON COLLECTOR PROBLEM</b> </h1>
+                <h1><b>COUPON COLLECTOR</b> </h1>
                 <h3><b>DESCRIPTION</b></h3>
                 <p class="w3-text-grey">
-                    There are x coupons in a collection. A collector has the ability to purchase a coupon, but
+                    There are multiple coupons in a collection. A collector has the ability to purchase a coupon, but
                     can’t choose the coupon he purchases. Instead, the coupon is revealed to be coupon i with
                     probability pi. Let N be the number of coupons he’ll need to collect before he has at
-                    least one coupon of each type. Let’s call this random variable N. Now, this tool helps you solve
+                    least one coupon of each type. Let’s call this random variable X. Now, this tool helps you solve
                     the following questions.
                 </p>
                 <button onclick="cpShowProbs()">View Questions</button>
                 <div id="cp problems" style="display: none;">
                     <ul>
                         <li>
-                            What is the expected value of N when the coupons have equal probabilities of being collected?
+                            What is the expected value of X when the coupons have equal probabilities of being collected?
                         </li>
                         <li>
                             
-                            what is the expected value of N when the coupons have unequal probabilities of being collected?
+                            what is the expected value of X when the coupons have unequal probabilities of being collected?
                         </li>
                         <li>
-                            What is the variance of N when the coupons have equal probabilities of being collected?
+                            What is the variance of X when the coupons have equal probabilities of being collected?
                         </li>
                         <li>
-                            What is the variance of N when the coupons have unequal probabilities of being collected?
+                            What is the variance of X when the coupons have unequal probabilities of being collected?
                         </li>
                         <li>
-                            What is the density function of N (meaning the entire distribution) when the coupons have
+                            What is the density function of X (meaning the entire distribution) when the coupons have
                             equal probabilities?
                         </li>
                         <li>
-                            What is the density function of N (meaning the entire distribution) when the coupons have
+                            What is the density function of X (meaning the entire distribution) when the coupons have
                             unequal probabilities?
                         </li>
                     </ul>
@@ -99,9 +99,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Times New Roman", sans-serif}
                     <h2><b>INPUT SECTION</b></h2>
                     <form>
                         <label>Type of problem: </label><br />
-                        <input type="radio" id="type_1" name="coupon probability" value="equal" checked style="height:25px; width:25px; vertical-align: middle;" CHECKED>
+                        <input type="radio" id="type_1" name="coupon probability" value="equal" checked style="height:25px; width:25px; vertical-align: middle;" >
                         <label>Type 1: Probability of each coupon is equal</label> <br />
-                        <input type="radio" id="type_2" name="coupon probability" value="unequal" style="height:25px; width:25px; vertical-align: middle;" CHECKED>
+                        <input type="radio" id="type_2" name="coupon probability" value="unequal" style="height:25px; width:25px; vertical-align: middle;" >
                         <label>Type 2: Probability of each coupons is unequal</label> <br />
                         <label>Number of types of coupons: 
                         <h3><i>It must be larger than 0.</i> </h3>
@@ -195,9 +195,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Times New Roman", sans-serif}
                     <h2><b>INPUT SECTION</b></h2>
                     <form>
                         <label>Queuing system type: </label> <br>
-                        <input type="radio" id="qt_type_1" name="queue_type" value="M/M/1" checked onclick="qtType1InputShow();" style="height:25px; width:25px; vertical-align: middle;" CHECKED></input>
+                        <input type="radio" id="qt_type_1" name="queue_type" value="M/M/1" checked onclick="qtType1InputShow();" style="height:25px; width:25px; vertical-align: middle;" ></input>
                         <label>M/M/1</label> <br>
-                        <input type="radio" id="qt_type_2" name="queue_type" value="M/G/1" onclick="qtType2InputShow();" style="height:25px; width:25px; vertical-align: middle;" CHECKED></input>
+                        <input type="radio" id="qt_type_2" name="queue_type" value="M/G/1" onclick="qtType2InputShow();" style="height:25px; width:25px; vertical-align: middle;" ></input>
                         <label>M/G/1</label> <br>
                         <br>
                         <label>Mean customer inter-arrival time (minutes): </label>

@@ -218,8 +218,10 @@ const qtSubmitOnClick = () => {
     var type_1 = document.getElementById("qt_type_1").checked;
     var type_2 = document.getElementById("qt_type_2").checked;
 
-    if (type_1 && qtValidateInputType1(mean_arv_time, mean_svc_time)) qtCalType1(mean_arv_time, mean_svc_time);
-    else if (type_2 && qtValidateInputType2(mean_arv_time, min_svc_time, max_svc_time)) qtCalType2(mean_arv_time, min_svc_time, max_svc_time);
+    if (type_1 && qtValidateInputType1(mean_arv_time, mean_svc_time))
+        qtCalType1(mean_arv_time, mean_svc_time);
+    else if (type_2 && qtValidateInputType2(mean_arv_time, min_svc_time, max_svc_time)) 
+        qtCalType2(mean_arv_time, min_svc_time, max_svc_time);
     
 
 }
@@ -276,12 +278,12 @@ function qtCalType2(mean_arv_time, min_svc_time, max_svc_time) {
 }
 function qtValidateInputType1(mean_arv_time, mean_svc_time){
     var err = "";
-    if (isNaN(mean_arv_time) || isNaN(mean_svc_time)) err += "Input values must be numbers\n";
+    if (isNaN(mean_arv_time) || isNaN(mean_svc_time)) err += "Error: input values must be numbers\n";
     else {
-        if (mean_arv_time <= 0) err += "customer inter-arrival time must be positive \n";
-        if (mean_svc_time <= 0) err += "service time must be positive \n";
+        if (mean_arv_time <= 0) err += "Error: customer inter-arrival time must be positive \n";
+        if (mean_svc_time <= 0) err += "Error: service time must be positive \n";
         if (mean_arv_time < mean_svc_time) 
-            err += "service time must be less than customer inter-arrival time, or your queue of customers would be infinite";
+            err += "Error: service time must be less than customer inter-arrival time, or your queue of customers would be infinite \n";
     }
  
     if (err != "") alert(err);
@@ -291,13 +293,13 @@ function qtValidateInputType1(mean_arv_time, mean_svc_time){
 
 function qtValidateInputType2(mean_arv_time, min_svc_time, max_svc_time){
     var err = "";
-    if (isNaN(mean_arv_time) || isNaN(min_svc_time) || isNaN(max_svc_time)) err += "Input values must be numbers\n";
+    if (isNaN(mean_arv_time) || isNaN(min_svc_time) || isNaN(max_svc_time)) err += "Error: input values must be numbers\n";
     else {
-        if (mean_arv_time <= 0) err += "customer inter-arrival time must be positive \n";
-        if (min_svc_time <= 0 || max_svc_time <= 0) err += "service time must be positive \n";
-        if (min_svc_time > max_svc_time) err += "minimum service time cannot be larger than maximum service time \n";
+        if (mean_arv_time <= 0) err += "Error: customer inter-arrival time must be positive \n";
+        if (min_svc_time <= 0 || max_svc_time <= 0) err += "Error: service time must be positive \n";
+        if (min_svc_time > max_svc_time) err += "Error: minimum service time cannot be larger than maximum service time \n";
         if (max_svc_time >= mean_arv_time) 
-            err += "service time must be less than customer inter-arrival time, or your queue of customers would be infinite";
+            err += "Error: service time must be less than customer inter-arrival time, or your queue of customers would be infinite\n";
     }
 
     if (err != "") alert(err);
