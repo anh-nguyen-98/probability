@@ -308,7 +308,7 @@ function qtValidateInputType2(mean_arv_time, min_svc_time, max_svc_time){
 }
 const cpShowProbs=() => {
     var x = document.getElementById("cp problems");
-    if (x.style.display === "none") {
+    if (x.style.display == "none") {
         x.style.display = "block";  
     } else {
         x.style.display = "none";
@@ -318,7 +318,7 @@ const cpShowProbs=() => {
 
 const qtShowProbs=() => {
     var x = document.getElementById("qt problems");
-    if (x.style.display === "none") {
+    if (x.style.display == "none") {
         x.style.display = "block";  
     } else {
         x.style.display = "none";
