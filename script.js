@@ -68,7 +68,6 @@ function cpCalType1 (n) {
         f_t = Math.pow(1 - Math.exp(-p*t), n);
         
     }
-    console.log(dist);
  
 
     document.getElementById("cp_expectedV").innerHTML = exp_v;
@@ -269,8 +268,8 @@ function qtCalType2(mean_arv_time, min_svc_time, max_svc_time) {
 }
 function qtValidateInput(mean_arv_time, mean_svc_time){
     var err = "";
-    if (mean_arv_time == 0) err += "customer inter-arrival time must be positive \n";
-    if (mean_svc_time == 0) err += "service time must be positive \n";
+    if (mean_arv_time <= 0) err += "customer inter-arrival time must be positive \n";
+    if (mean_svc_time <= 0) err += "service time must be positive \n";
     if (mean_arv_time < mean_svc_time) 
         err += "service time must be less than customer inter-arrival time, or your queue of customers would be infinite";
     if (err != "") alert(err);
