@@ -1,14 +1,5 @@
 // CPP
-const cpType1OnClick = () => {
-    const n = document.getElementById("cp_count").value;
-    if (n != "") {
-        document.getElementById("cp_prob").value = 1/n;
-    } else {
-        document.getElementById("cp_prob").value = "";
-    }
-  
-   
-}
+
 const cpSubmitOnClick = () => { 
     var n = document.getElementById("cp_count").value;
     var type_1 = document.getElementById("type_1").checked;
@@ -35,17 +26,21 @@ function cpValidateInput (n, type_1, type_2, p_lst) {
             var p = p_lst[0];
             if (isNaN(p)) err += "Error: input for probability is not a number \n";
             if (p <= 0 || p > 1) err += "Error: probability must be larger than 0 and less than 1 \n";
-            if (p * n != 1) err += "Error: sum of coupon probability is not 1 \n";
+            var sum = p * n;
+            if (sum.toFixed(10)!= 1) err += "Error: sum of coupon probability is not 1 \n";
         }
     }
     if (type_2) {
+        var sum = 0;
         for (var i = 0; i < p_lst.length; i ++) {
             var p = p_lst[i];
             if (isNaN(p)) err += "Error: input for probability is not a number \n";
             if (p <= 0 || p > 1) err += "Error: probability must be larger than 0 and less than 1 \n";
+            else sum += p;
         }
         if (p_lst.length != n) err += "Error: missing input for probability\n";
-        if (p_lst.reduce((a, b) => a + b, 0) != 1) err += "Error: sum of coupon probability is not 1 \n";
+        console.log(sum.toFixed(10));
+        if (sum.toFixed(10) != 1) err += "Error: sum of coupon probability is not 1 \n";
     }
  
     if (err != "") alert (err);
