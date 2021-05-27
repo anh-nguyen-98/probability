@@ -5,10 +5,7 @@ const cpSubmitOnClick = () => {
     var type_1 = document.getElementById("type_1").checked;
     var type_2 = document.getElementById("type_2").checked;
     var p_lst = document.getElementById("cp_prob").value
-                        .split("\n")
-                        .map(p => parseFloat(p));
-                        // .filter(p => !isNaN(p) && p > 0 && p <= 1);
-    console.log(p_lst);
+                        .split("\n");
     if (!cpValidateInput(n, type_1, type_2, p_lst)) return;
     if (type_1) cpCalType1(n);
         
@@ -18,35 +15,69 @@ const cpSubmitOnClick = () => {
 
 function cpValidateInput (n, type_1, type_2, p_lst) {
     var err = "";
-    if (n == "") err += "Error: number of coupon types can't be empty \n";
+    if (n == "") err += "Error: number of coupon types is empty\n";
     if (!(type_1 | type_2)) err += "Error: problem type unselected \n";
     if (type_1) {
-        if (p_lst.length != 1) err += "One input allowed only for this type of problem \n";
+        if (p_lst.length < 1) err += "Error: coupon probability is empty \n";
+        if (p_lst.length > 1) err += "Error: more than one input\n";
         else {
             var p = p_lst[0];
-            if (isNaN(p)) err += "Error: input for probability is not a number \n";
-            if (p <= 0 || p > 1) err += "Error: probability must be larger than 0 and less than 1 \n";
+            try {
+                eval(p);
+            }
+            catch (e) {
+                err +=  "Error: input for probability is not a number \n";
+                alert(err);
+                return;
+            }
+            p = parseFloat(eval(p));
+            if (p <= 0 || p > 1) {
+                err += "Error: probability must be larger than 0 and less than 1 \n";
+                alert(err);
+                return;
+            }
             var sum = p * n;
-            if (sum.toFixed(10)!= 1) err += "Error: sum of coupon probability is not 1 \n";
+            if (sum.toFixed(10)!= 1) {
+                err += "Error: sum of coupon probability is not 1 \n";
+                alert(err);
+                return;
+            }
+            p_lst[0] = p;
         }
     }
     if (type_2) {
         var sum = 0;
         for (var i = 0; i < p_lst.length; i ++) {
             var p = p_lst[i];
-            if (isNaN(p)) err += "Error: input for probability is not a number \n";
-            if (p <= 0 || p > 1) err += "Error: probability must be larger than 0 and less than 1 \n";
-            else sum += p;
+            try {
+                eval(p);
+            }
+            catch (e) {
+                err +=  "Error: input for probability is not a number \n";
+                alert(err);
+                return;
+            }
+            p = parseFloat(eval(p));
+            if (p <= 0 || p > 1) {
+                err += "Error: probability must be larger than 0 and less than 1 \n";
+                alert(err);
+                return;
+            }
+            p_lst[i] = p;
+            sum += p;
         }
-        if (p_lst.length != n) err += "Error: missing input for probability\n";
-        console.log(sum.toFixed(10));
-        if (sum.toFixed(10) != 1) err += "Error: sum of coupon probability is not 1 \n";
+        if (sum.toFixed(10) != 1) {
+            err += "Error: sum of coupon probability is not 1 \n";
+            alert(err);
+            return;
+        }
     }
  
     if (err != "") alert (err);
 
     return err == "";
 }
+
 
 function cpCalType1 (n) {
     var sum1 = 0;
@@ -87,7 +118,6 @@ function cpCalType1 (n) {
 function cpCalType2 (p_lst) {
     // get sum of p_combinations table
     var sum_p_table = combine_sum_p(p_lst);
-    // console.log(sum_p_table);
 
     // expected value, variance
     var exp_v = 0;
