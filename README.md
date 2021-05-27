@@ -4,6 +4,8 @@ This is our final project for FUV MATH205 - Introduction to probability and stat
 
 It provides a combination of tools for solving famous pronlems such as The Probabilistic Mehod, Coupon Collector Problem.
 
+[Check it out!](https://fuv-fun-math.herokuapp.com/)
+
 
 # Authors:
 
